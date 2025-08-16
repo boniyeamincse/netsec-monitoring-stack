@@ -1,5 +1,3 @@
-.PHONY: up-core down-core logs-core ps-core up-flows down-flows logs-flows ps-flows up-ids down-ids logs-ids ps-ids up-soc down-soc logs-soc ps-soc up-ti down-ti logs-ti ps-ti ps logs restart-core restart-flows restart-ids restart-soc restart-ti
-
 SHELL := /bin/bash
 COMPOSE := docker compose
 
@@ -79,21 +77,6 @@ ps-ti:
 	$(COMPOSE) -f compose/docker-compose.ti.yml ps
 
 # -----------------------------
-# Grafana
-# -----------------------------
-up-grafana:
-	$(COMPOSE) --env-file .env -f compose/docker-compose.grafana.yml up -d
-
-down-grafana:
-	$(COMPOSE) -f compose/docker-compose.grafana.yml down
-
-logs-grafana:
-	$(COMPOSE) -f compose/docker-compose.grafana.yml logs -f
-
-ps-grafana:
-	$(COMPOSE) -f compose/docker-compose.grafana.yml ps
-
-# -----------------------------
 # Utility
 # -----------------------------
 ps:
@@ -107,4 +90,11 @@ restart-flows: down-flows up-flows
 restart-ids: down-ids up-ids
 restart-soc: down-soc up-soc
 restart-ti: down-ti up-ti
-restart-grafana: down-grafana up-grafana
+
+health-core:
+	@docker compose -f compose/docker-compose.core.yml ps
+health-flows:
+	@docker compose -f compose/docker-compose.flows.yml ps
+health-ids:
+	@docker compose -f compose/docker-compose.ids.yml ps
+

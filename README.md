@@ -110,47 +110,27 @@ netsec-monitoring-stack/
 ├── .gitignore                 # Git ignore file
 ├── Makefile                   # helper make targets
 ├── README.md                  # This file
+├── INSTALL.md                 # Installation guide
 │
 ├── compose/                   # Docker Compose per service
 │   ├── docker-compose.core.yml
 │   ├── docker-compose.flows.yml
 │   ├── docker-compose.ids.yml
 │   ├── docker-compose.soc.yml
-│   └── docker-compose.ti.yml
+│   ├── docker-compose.ti.yml
+│   └── docker-compose.grafana.yml
 │
 ├── env/                       # service-specific environment files
-│   ├── librenms.env
-│   ├── librenms.env.example
-│   ├── netbox.env
-│   └── netbox.env.example
+│   └── ...
 │
 ├── configs/                   # configs for each tool
-│   ├── wazuh/
-│   │   └── rules/
-│   │       └── local_rules.xml
-│   ├── oxidized/
-│   │   ├── config
-│   │   └── devices.csv
-│   ├── suricata/
-│   │   └── suricata.yaml
-│   ├── thehive/
-│   │   └── conf/
-│   │       └── application.conf
-│   ├── cortex/
-│   │   └── conf/
-│   │       └── application.conf
 │   └── ...
 │
 ├── ansible/                   # automation
-│   ├── inventory.yml
-│   └── roles/
-│       └── ...
+│   └── ...
 │
 ├── runbooks/                  # operational docs
-│   ├── administrator_guide.md
-│   ├── user_guide.md
-│   ├── onboarding-checklist.md
-│   └── incident-handling.md
+│   └── ...
 │
 └── scripts/
     └── init.sh
@@ -219,6 +199,74 @@ netsec-monitoring-stack/
 
 ```
 
+🔮 Future Development Roadmap
+Milestone 1 — Infrastructure Hardening
+
+Add Traefik reverse proxy for HTTPS and domain-based routing.
+
+Integrate Docker secrets / Vault for strong secret management.
+
+Enable central logging of all containers.
+
+Milestone 2 — Automation
+
+Build Ansible playbooks to auto-onboard devices:
+
+Syslog → Wazuh
+
+SNMP → LibreNMS
+
+NetFlow → nProbe
+
+SSH creds for Oxidized
+
+NetBox API integration to enforce source of truth before onboarding.
+
+Milestone 3 — Security Operations
+
+Deploy Suricata/Zeek sensors in pilot mode.
+
+Tune detection rules, ingest into Wazuh.
+
+Build alert → case automation in TheHive.
+
+Milestone 4 — NOC Operations
+
+Finalize LibreNMS alert policies (CPU, RAM, interface flaps).
+
+Validate Oxidized backups and version diffs.
+
+Standardize Grafana dashboards for bandwidth & security.
+
+Milestone 5 — Collaboration & CI/CD
+
+Add pre-commit hooks (yamllint, markdownlint).
+
+Enable GitHub/GitLab CI for automated lint & deploy checks.
+
+Write runbooks for NOC (infra issues) and SOC (incident handling).
+
+Package all diagrams into docs/ (PNG + PDF + PPTX).
+
+📖 Documentation & Runbooks
+
+runbooks/ contains operator guides.
+
+docs/ (to be created) will store diagrams, PDF architecture, and user manuals.
+
+📜 License
+
+MIT License – free for internal + commercial use.
+
 ---
+
+👉 this **README** now has:  
+- features ✅  
+- repo structure ✅  
+- run instructions ✅  
+- team practices ✅  
+- **future roadmap** ✅  
+
+Do you want me to also prepare a **TEAM_ONBOARDING.md** (like a handbook: setup dev env, git workflow, coding standards) so your teammates can jump in quickly?
 
 

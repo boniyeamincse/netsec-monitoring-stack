@@ -10,6 +10,28 @@ Before you begin, ensure you have the following software installed on your syste
 *   **Docker:** To run the services in containers.
 *   **Docker Compose:** To manage the multi-container application.
 
+## 2. Hardware Requirements
+
+The hardware requirements for this stack will vary depending on the number of devices you are monitoring and the amount of network traffic being analyzed. Here are some general guidelines:
+
+### Small Deployment (e.g., home lab, small office with < 20 devices)
+
+*   **CPU:** 2-4 cores
+*   **RAM:** 4-8 GB
+*   **Storage:** 50-100 GB SSD
+
+### Medium Deployment (e.g., small to medium business with 20-100 devices)
+
+*   **CPU:** 4-8 cores
+*   **RAM:** 16-32 GB
+*   **Storage:** 200-500 GB SSD
+
+### Large Deployment (e.g., enterprise with > 100 devices)
+
+*   **CPU:** 8+ cores
+*   **RAM:** 32+ GB
+*   **Storage:** 1TB+ SSD
+
 ## 2. Installation
 
 ### Step 1: Clone the Repository
@@ -69,3 +91,15 @@ You can use the `Makefile` to manage the services:
 
 *   **Permission denied when running `init.sh`:** If you get a permission denied error, make sure the script is executable: `chmod +x scripts/init.sh`
 *   **Ports are already in use:** If you have other services running on the same ports, you can change the ports in the `.env` file before running the setup script.
+
+
+👥 Team Practices
+
+Use Git branching model: main (stable) / dev (work in progress).
+
+All changes go through Pull Requests with at least one reviewer.
+
+Keep secrets out of git (env/*.env).
+
+Run make lint before committing to validate YAML/Markdown.
+

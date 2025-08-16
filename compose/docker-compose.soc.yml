@@ -11,35 +11,30 @@ x-restart: &default-restart
   restart: unless-stopped
 
 networks:
-  soc-net:
+  frontend: {}
+  backend: {}
 
 services:
   thehive:
-    image: thehiveproject/thehive:5.2.2
+    image: strangebee/thehive:${THEHIVE_VERSION}
     ports: [ "${THEHIVE_HTTP_PORT}:9000" ]
-    networks: [ soc-net ]
-    volumes:
-      - ../configs/thehive/data:/opt/thp/thehive/data
-      - ../configs/thehive/conf/application.conf:/etc/thehive/application.conf
     logging: *default-logging
     <<: *default-restart
+    networks: [frontend, backend]
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/api/v1/status"]
+      test: ["CMD", "curl", "-fsS", "http://localhost:9000"]
       interval: 30s
-      timeout: 10s
-      retries: 5
+      timeout: 5s
+      retries: 10
 
   cortex:
-    image: thehiveproject/cortex:3.5.2
+    image: thehiveproject/cortex:${CORTEX_VERSION}
     ports: [ "${CORTEX_HTTP_PORT}:9001" ]
-    networks: [ soc-net ]
-    volumes:
-      - ../configs/cortex/data:/opt/thp/cortex/data
-      - ../configs/cortex/conf/application.conf:/etc/cortex/application.conf
     logging: *default-logging
     <<: *default-restart
+    networks: [frontend, backend]
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9001/api/v1/status"]
+      test: ["CMD", "curl", "-fsS", "http://localhost:9001"]
       interval: 30s
-      timeout: 10s
-      retries: 5
+      timeout: 5s
+      retries: 10
