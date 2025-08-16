@@ -1,0 +1,21 @@
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Environment
+.env
+*.env.local
+
+# Dependencies
+node_modules/
+vendor/
+venv/
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db

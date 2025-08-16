@@ -1,0 +1,11 @@
+version: "3.9"
+name: ${NETWORK_STACK_NAME}-ti
+
+services:
+  misp:
+    image: coolacid/misp-docker:${MISP_VERSION}
+    ports: [ "${MISP_HTTPS_PORT}:443" ]
+    networks: [ti]
+
+networks:
+  ti:

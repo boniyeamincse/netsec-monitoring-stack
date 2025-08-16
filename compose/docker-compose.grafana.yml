@@ -1,0 +1,14 @@
+version: "3.9"
+name: ${NETWORK_STACK_NAME}-grafana
+
+networks:
+  grafana-net:
+
+services:
+  grafana:
+    image: grafana/grafana:${GRAFANA_VERSION}
+    ports: [ "${GRAFANA_HTTP_PORT}:3001" ]
+    networks: [ grafana-net ]
+    volumes:
+      - ../configs/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ../configs/grafana/provisioning:/etc/grafana/provisioning

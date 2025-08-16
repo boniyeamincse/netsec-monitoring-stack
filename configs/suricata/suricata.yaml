@@ -1,0 +1,22 @@
+%YAML 1.1
+---
+
+suricata-version: 7.0.0
+
+af-packet:
+  - interface: eth0
+
+default-log-dir: /var/log/suricata/
+
+outputs:
+  - console:
+      enabled: yes
+  - http-log:
+      enabled: yes
+      filename: http.log
+  - tls-log:
+      enabled: yes
+      filename: tls.log
+
+rules:
+  - /etc/suricata/rules/suricata.rules

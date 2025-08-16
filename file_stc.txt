@@ -1,0 +1,54 @@
+netsec-monitoring-stack/
+├── .env                       # Global env (versions, ports, defaults)
+├── .gitignore
+├── Makefile                   # helper make targets
+├── README.md
+│
+├── compose/                   # Docker Compose per service
+│   ├── docker-compose.core.yml
+│   ├── docker-compose.flows.yml
+│   ├── docker-compose.ids.yml
+│   ├── docker-compose.soc.yml
+│   └── docker-compose.ti.yml
+│
+├── env/                       # service-specific environment files
+│   ├── librenms.env
+│   ├── librenms.env.example
+│   ├── netbox.env
+│   └── netbox.env.example
+│
+├── configs/                   # configs for each tool
+│   ├── wazuh/
+│   │   └── rules/
+│   │       └── local_rules.xml
+│   ├── oxidized/
+│   │   ├── config
+│   │   └── devices.csv
+│   ├── suricata/
+│   │   └── suricata.yaml
+│   ├── zeek/                  # (empty or custom Zeek configs later)
+│   ├── librenms/
+│   ├── ntopng/
+│   ├── nprobe/
+│   └── netbox/
+│
+├── ansible/                   # automation
+│   ├── inventory.yml
+│   ├── group_vars/
+│   └── roles/
+│       ├── net-syslog/
+│       │   └── tasks/
+│       │       └── main.yml
+│       ├── net-snmp/
+│       │   └── tasks/
+│       │       └── main.yml
+│       └── net-flow/
+│           └── tasks/
+│               └── main.yml
+│
+├── runbooks/                  # operational docs
+│   ├── onboarding-checklist.md
+│   └── incident-handling.md
+│
+└── scripts/
+    └── init.sh

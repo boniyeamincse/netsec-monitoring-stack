@@ -1,0 +1,6 @@
+<!-- Local rules -->
+<group name="local,syslog,sshd,">
+
+<!-- Add your local rules here -->
+
+</group>

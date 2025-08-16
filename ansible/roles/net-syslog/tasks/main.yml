@@ -1,0 +1,5 @@
+---
+# tasks file for net-syslog
+- name: Configure Syslog
+  debug:
+    msg: "Configure Syslog on {{ inventory_hostname }}"
