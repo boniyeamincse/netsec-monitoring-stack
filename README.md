@@ -164,29 +164,13 @@ netsec-monitoring-stack/
    - Ubuntu Server 24.04 with Docker & Docker Compose installed
    - Clone this repo to your server
 
-2. **Configure environment**
-   - Copy `env/librenms.env.example` to `env/librenms.env` and `env/netbox.env.example` to `env/netbox.env`.
-   - Edit `.env` and the new `env/*.env` files to set your desired passwords and configuration.
-   - Adjust configs under `configs/` as needed.
-
-3. **Start core services**
+2. **Run the setup script**
    ```bash
-   make up-core
+   ./scripts/init.sh
    ```
 
-   Brings up Wazuh, LibreNMS, NetBox, Oxidized
+   This will automate the entire setup process, including configuration and service startup.
 
-4. **Enable flows & IDS**
-   ```bash
-   make up-flows
-   make up-ids
-   ```
-
-5. **Enable SOC components**
-   ```bash
-   make up-soc
-   make up-ti
-   ```
 
 ---
 

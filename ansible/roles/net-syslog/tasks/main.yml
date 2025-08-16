@@ -1,5 +1,13 @@
 ---
-# tasks file for net-syslog
-- name: Configure Syslog
-  debug:
-    msg: "Configure Syslog on {{ inventory_hostname }}"
+- name: Configure rsyslog to forward to Wazuh
+  lineinfile:
+    path: /etc/rsyslog.conf
+    line: "*.* @${wazuh_manager_ip}:1514;RSYSLOG_SyslogProtocol23Format"
+    create: yes
+  notify: restart rsyslog
+
+- name: Restart rsyslog
+  service:
+    name: rsyslog
+    state: restarted
+  listen: "restart rsyslog"

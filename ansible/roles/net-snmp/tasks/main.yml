@@ -1,5 +1,17 @@
 ---
-# tasks file for net-snmp
-- name: Configure SNMP
-  debug:
-    msg: "Configure SNMP on {{ inventory_hostname }}"
+- name: Install SNMP daemon
+  apt:
+    name: snmpd
+    state: present
+
+- name: Configure SNMPd
+  template:
+    src: snmpd.conf.j2
+    dest: /etc/snmp/snmpd.conf
+  notify: restart snmpd
+
+- name: Restart SNMPd
+  service:
+    name: snmpd
+    state: restarted
+  listen: "restart snmpd"
