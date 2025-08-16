@@ -1,6 +1,15 @@
 version: "3.9"
 name: ${NETWORK_STACK_NAME}-grafana
 
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+x-restart: &default-restart
+  restart: unless-stopped
+
 networks:
   grafana-net:
 
@@ -12,3 +21,10 @@ services:
     volumes:
       - ../configs/grafana/grafana.ini:/etc/grafana/grafana.ini
       - ../configs/grafana/provisioning:/etc/grafana/provisioning
+    logging: *default-logging
+    <<: *default-restart
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:3001/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 10
