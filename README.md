@@ -1,5 +1,5 @@
 
-# NetSec Monitoring Stack (Docker)
+🛡️ NetSec Monitoring Stack (Docker)
 
 Centralized **network & security monitoring** for ~50 switches and 11 routers.  
 Provides a single pane of glass for **logs, flows, SNMP metrics, configuration backups, threat intel, dashboards, and SOC workflows**.
@@ -71,34 +71,22 @@ Provides a single pane of glass for **logs, flows, SNMP metrics, configuration b
 
 ---
 
-## 🏗 Architecture (High Level)
+## 🏗️ Architecture (High Level)
 
-```
+![Project Architecture Diagram](images/project_architecture_diagram.png)
 
-```
-      ┌──────────────────────── Core DC / VM Farm ────────────────────────┐
-```
+---
 
-Syslog → │ Wazuh (Manager/Indexer/Dashboard)                                │
-SNMP →  │ LibreNMS + DB                                                    │
-NetFlow→ │ nProbe/pmacct → ntopng                                           │
-Config  │ Oxidized                                                         │
-Mgmt →  │ NetBox (IPAM/DCIM)                                               │
-Alerts→  │ TheHive + Cortex + MISP                                          │
-└───────────────────────────────────────────────────────────────────┘
-▲                     ▲                     ▲
-│                     │                     │
-SPAN/TAP → Suricata IDS        Zeek                    Grafana (opt)
+## 🖼 Visual Overview
 
-```
-   50 Switches + 11 Routers
-   - Syslog → Wazuh
-   - SNMP → LibreNMS
-   - NetFlow/IPFIX/sFlow → nProbe/pmacct
-   - SSH/TFTP → Oxidized (config backups)
-```
+### Deployment Overview
+![Project Deployment Overview](images/project_deployment.png)
 
-```
+### Layered Architecture
+![Project Layers](images/project_layers.png)
+
+### Workflow Diagram
+![Project Workflow](images/project_workflow.png)
 
 ---
 
@@ -161,7 +149,7 @@ netsec-monitoring-stack/
 
 ---
 
-## 🖥 Access Points
+## 🖥️ Access Points
 
 * **Wazuh Dashboard** → `http://<server-ip>:5601`
 * **LibreNMS** → `http://<server-ip>:8000`
